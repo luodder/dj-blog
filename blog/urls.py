@@ -13,13 +13,23 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url, patterns, include, url
+from django.conf.urls import include, url
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from blogpost.views import index,view_post
+"""
+urlpatterns = ['',
+    url(r'^$', index,name='main'),
+    url(r'^blog/(?p<slug>[^\.]+).html', view_post),
+    url(r'^admin/', include(admin.site.urls)),
+]
+"""
 
-urlpatterns = patterns(' ',
-                       (r'^$', 'blogpost.views.index'),
-                       url(r'^blog/(?p<slug>[^\.]+).html', 'bligpost.views.view_post', name='view_blog_post'),
-                       url(r'^admin/', include(admin.site.urls))
-                       ) + static(settings.STATIC_URL, document_root =settings.STATIC_ROOT)
+urlpatterns = [
+    url(r'^$', index, name='main'),
+    url(r'^blog/(?P<slug>[^\.]+).html', view_post, name='view_blog_post'),
+    url(r'^admin/',admin.site.urls),
+    url(r'^pages/', include('django.contrib.flatpages.urls')),
+    url(r'^comments/', include('django_comments.urls')),
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

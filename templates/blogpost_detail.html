@@ -5,16 +5,18 @@
 {% block title %}{{ post.title }}{% endblock %}
 
 {% block content %}
-<div>
-    <div>
-        <h2><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
+<div class="mdl-card mdl-shadow--2dp">
+    <div class="mdl-card__title">
+        <h2 class="mdl-card__title-text"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
     </div>
-    {{post.body}}
-    <p>
+    <div class="mdl-card__supporting-text">
+        {{post.body}}
+    </div>
+    <div class="mdl-card__actions">
         {{post.posted}} - By {{post.author}}
-    </p>
+    </div>
+</div>
 
 {% render_comment_list for post %}
 
-</div>
 {% endblock %}
