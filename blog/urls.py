@@ -18,6 +18,11 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from blogpost.views import index,view_post
+from django.contrib.sitemaps.views import sitemap
+from rest_framework import routers
+from blogpost.serializers import BlogpostSet
+
+from sitemaps.sitemaps import PageSitemap,FlatPagesSitemap,BlogSitemap
 """
 urlpatterns = ['',
     url(r'^$', index,name='main'),
@@ -26,10 +31,23 @@ urlpatterns = ['',
 ]
 """
 
+apiRouter = routers.DefaultRouter()
+apiRouter.register(r'blogpost', BlogpostSet)
+
+sitemaps = {
+    "page":PageSitemap,
+    "flatpages":FlatPagesSitemap,
+    "blog":BlogSitemap
+}
+
 urlpatterns = [
     url(r'^$', index, name='main'),
     url(r'^blog/(?P<slug>[^\.]+).html', view_post, name='view_blog_post'),
     url(r'^admin/',admin.site.urls),
     url(r'^pages/', include('django.contrib.flatpages.urls')),
     url(r'^comments/', include('django_comments.urls')),
+    url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^api/', include(apiRouter.urls)),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+

@@ -1,11 +1,13 @@
 from django.shortcuts import render_to_response, get_object_or_404
 from blogpost.models import Blogpost
 
+
 def index(request):
     return render_to_response('index.html', {
-        'post': Blogpost.objects.all()[:5]
+        'posts': Blogpost.objects.all()[:5]
 
     })
+
 
 def view_post(request, slug):
     return render_to_response('blogpost_detail.html', {

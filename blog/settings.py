@@ -42,7 +42,10 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.flatpages',
     'django_comments',
+    'django.contrib.sitemaps',
+    'rest_framework',
     'blogpost',
+    'corsheaders',
 
 ]
 
@@ -55,7 +58,8 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware'
+    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'blog.urls'
@@ -80,7 +84,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'blog.wsgi.application'
 
-
+CORS_ALLOW_CREDENTIALS = True
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
