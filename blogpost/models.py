@@ -15,7 +15,7 @@ class Blogpost(models.Model):
     body = models.TextField()
     posted = models.DateField(db_index=True, auto_now_add=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return '%s' % self.title
 
     @permalink
