@@ -13,16 +13,18 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import include, url
-from django.contrib import admin
 from django.conf import settings
+from django.conf.urls import include, url
 from django.conf.urls.static import static
-from blogpost.views import index,view_post
+from django.contrib import admin
 from django.contrib.sitemaps.views import sitemap
 from rest_framework import routers
-from blogpost.serializers import BlogpostSet
 
-from sitemaps.sitemaps import PageSitemap,FlatPagesSitemap,BlogSitemap
+from blogpost.serializers import BlogpostSet
+from blogpost.sitemaps.sitemaps import PageSitemap,FlatPagesSitemap,BlogSitemap
+from blogpost.views import index,view_post
+from djblog.views import IndexView as djIndexView
+
 """
 urlpatterns = ['',
     url(r'^$', index,name='main'),
@@ -49,5 +51,6 @@ urlpatterns = [
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^api/', include(apiRouter.urls)),
+    url(r'^djblog/', djIndexView.as_view()),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

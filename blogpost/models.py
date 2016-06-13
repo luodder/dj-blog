@@ -1,7 +1,14 @@
+# -*- coding: utf-8 -*-
+
 from django.db import models
 from django.db.models import permalink
 
 class Blogpost(models.Model):
+    STATUS_CHOICE = (
+        ('d','Draft'),
+        ('p','Published'),
+    )
+
     title = models.CharField(max_length=100, unique=True)
     author = models.CharField(max_length=100, unique=True)
     slug = models.SlugField(max_length=100, unique=True)

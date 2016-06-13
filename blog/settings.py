@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'blogpost',
     'corsheaders',
+    'djblog',
 
 ]
 
@@ -68,7 +69,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            'templates/'
+            'templates/','djblog/',
         ],
         'APP_DIRS': True,
         'OPTIONS': {
