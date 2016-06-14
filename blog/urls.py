@@ -51,6 +51,6 @@ urlpatterns = [
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^api/', include(apiRouter.urls)),
-    url(r'^djblog/', djIndexView.as_view()),
+    url(r'^djblog/', include('djblog.urls',namespace = 'djblog', app_name = 'djblog')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
