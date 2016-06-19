@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/blog.iml" filepath="$PROJECT_DIR$/.idea/blog.iml" />
+      <module fileurl="file://$USER_HOME$/myproject/py-pj/blog_project/.idea/blog.iml" filepath="$USER_HOME$/myproject/py-pj/blog_project/.idea/blog.iml" />
     </modules>
   </component>
 </project>
